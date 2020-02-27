@@ -1,8 +1,6 @@
 package com.satalia.beerTest.beerTest.entities;
 
 import javax.persistence.*;
-import java.lang.reflect.Type;
-import java.sql.Types;
 import java.util.List;
 
 @Entity
@@ -20,6 +18,17 @@ public class Brewery {
 
     @OneToMany(mappedBy = "brewery", cascade = CascadeType.ALL)
     private List<GeoLocation> location;
+
+    @OneToMany(mappedBy = "brewery", cascade = CascadeType.ALL)
+    private List<BeerType>beerTypes;
+
+    public List<BeerType> getBeerTypes() {
+        return beerTypes;
+    }
+
+    public void setBeerTypes(List<BeerType> beerTypes) {
+        this.beerTypes = beerTypes;
+    }
 
     public long getId() {
         return id;

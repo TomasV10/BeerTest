@@ -14,7 +14,6 @@ public class GeoLocation {
     @Column(name = "longitude")
     private double longitude;
 
-
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     private Brewery brewery;
@@ -49,5 +48,27 @@ public class GeoLocation {
 
     public void setBrewery(Brewery brewery) {
         this.brewery = brewery;
+    }
+
+    public GeoLocation(double latitude, double longitude, Brewery brewery) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.brewery = brewery;
+    }
+
+    public GeoLocation(double latitude, double longitude) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+    public GeoLocation() {
+    }
+
+    @Override
+    public String toString() {
+        return "GeoLocation{" +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                '}';
     }
 }
