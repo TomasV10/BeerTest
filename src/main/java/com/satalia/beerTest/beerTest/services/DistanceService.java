@@ -4,12 +4,22 @@ import com.satalia.beerTest.beerTest.entities.GeoLocation;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class DistanceService {
 
 
+    public List<GeoLocation> getDistancesBetweenBreweries(GeoLocation home, List<GeoLocation>breweries){
+        List<GeoLocation>visitedBreweries = new ArrayList<>();
+        visitedBreweries.add(new GeoLocation(home.getLatitude(), home.getLongitude()));
+
+        visitedBreweries.addAll(breweries.stream()
+                .map(b -> new GeoLocation(b.getLatitude(), b.getLongitude()))
+                .collect(Collectors.toList()));
+        return visitedBreweries;
+    }
 
     public double calculateDistance(double homeLat, double homeLon, double endLat, double endLon) {
         final int R = 6371;
@@ -23,7 +33,7 @@ public class DistanceService {
         double distance = R * c;
 
         distance = Math.pow(distance, 2);
-        return Math.sqrt(distance);
+        return Math.round(Math.sqrt(distance));
     }
 
     private static double deg2rad(double deg) {

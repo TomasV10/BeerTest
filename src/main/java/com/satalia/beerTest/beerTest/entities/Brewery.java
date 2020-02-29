@@ -7,7 +7,7 @@ import java.util.List;
 @Table(name = "breweries")
 public class Brewery {
     @Id
-    private long id;
+    private int id;
     @Column(name = "name")
     private String name;
     @Column(name = "address1")
@@ -30,11 +30,19 @@ public class Brewery {
         this.beerTypes = beerTypes;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public Brewery(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Brewery() {
+    }
+
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -69,4 +77,5 @@ public class Brewery {
     public void setLocation(List<GeoLocation> location) {
         this.location = location;
     }
+
 }

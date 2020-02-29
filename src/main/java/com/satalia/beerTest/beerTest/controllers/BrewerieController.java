@@ -22,8 +22,10 @@ public class BrewerieController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Brewery> getBreweryById(@PathVariable Long id) {
+    public Optional<Brewery> getBreweryById(@PathVariable Integer id) {
         return breweriesRepository.findById(id);
     }
+
+
 
 }

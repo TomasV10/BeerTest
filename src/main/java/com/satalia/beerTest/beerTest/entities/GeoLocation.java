@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Table(name = "geocodes")
 public class GeoLocation {
     @Id
-    private long id;
+    private int id;
     @Column(name = "latitude")
     private double latitude;
     @Column(name = "longitude")
@@ -18,11 +18,12 @@ public class GeoLocation {
     @ManyToOne(fetch = FetchType.EAGER)
     private Brewery brewery;
 
-    public long getId() {
+
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -47,12 +48,6 @@ public class GeoLocation {
     }
 
     public void setBrewery(Brewery brewery) {
-        this.brewery = brewery;
-    }
-
-    public GeoLocation(double latitude, double longitude, Brewery brewery) {
-        this.latitude = latitude;
-        this.longitude = longitude;
         this.brewery = brewery;
     }
 

@@ -9,7 +9,7 @@ import java.util.List;
 public class DistanceMatrixCreator {
 
     @Autowired
-    private DistanceService distanceService;
+    DistanceService distanceService;
 
     public double[][] calculateDistanceUsingMatrix(List<GeoLocation>distances){
         double[][] distanceMatrix = new double[distances.size()][distances.size()];
