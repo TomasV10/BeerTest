@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.mockito.Matchers.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @SpringBootTest
@@ -31,9 +32,11 @@ public class DistanceMatrixCreatorTest {
 
         double[][] matrix = distanceMatrixCreator.calculateDistanceUsingMatrix(distances);
 
+        System.out.println(Arrays.deepToString(matrix));
+
         Assert.assertEquals(0D, matrix[0][0], 0d);
         Assert.assertEquals(1D, matrix[0][1], 0d);
-        Assert.assertEquals(3D, matrix[1][0], 0d);
+        Assert.assertEquals(2D, matrix[1][0], 0d);
         Assert.assertEquals(0D, matrix[1][1], 0d);
 
     }
