@@ -23,9 +23,7 @@ class NearestBreweryTest {
         breweryDtos.add(new BreweryDto("Leeds", 2, false));
         breweryDtos.add(new BreweryDto("Leicester", 3, false));
         breweryDtos.add(new BreweryDto("Lincoln", 4, true)); //home
-
-
-		DistanceMatrixCreator distanceMatrixCreator = new DistanceMatrixCreator();
+		
 		NearestBrewery neighbour = new NearestBrewery();
 		final double[][] distances = { 	{0, 2.56, 100.05, 1.18, 2.25},
 										{2.25, 1.10, 0, 5.50, 3.33},
