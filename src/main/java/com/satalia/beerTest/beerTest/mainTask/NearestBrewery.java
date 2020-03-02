@@ -1,12 +1,8 @@
 package com.satalia.beerTest.beerTest.mainTask;
 
-import com.satalia.beerTest.beerTest.dto.GeoLocationDto;
 import com.satalia.beerTest.beerTest.entities.GeoLocation;
-import com.satalia.beerTest.beerTest.repositories.BreweriesRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 @Component
 public class NearestBrewery {

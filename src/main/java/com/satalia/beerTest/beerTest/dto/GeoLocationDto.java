@@ -1,6 +1,6 @@
 package com.satalia.beerTest.beerTest.dto;
 
-import org.springframework.ui.ModelMap;
+
 
 public class GeoLocationDto {
     private int id;

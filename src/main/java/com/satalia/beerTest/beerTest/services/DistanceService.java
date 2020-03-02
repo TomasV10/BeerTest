@@ -11,8 +11,6 @@ import java.util.stream.Collectors;
 @Service
 public class DistanceService {
 
-//    public GeoLocation getUserRequest()
-
     public List<GeoLocation> getDistancesBetweenBreweries(GeoLocation home, List<GeoLocation>breweries){
 
         List<GeoLocation>visitedBreweries = new ArrayList<>();

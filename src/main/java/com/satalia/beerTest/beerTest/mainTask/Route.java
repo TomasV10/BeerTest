@@ -1,6 +1,5 @@
 package com.satalia.beerTest.beerTest.mainTask;
 
-import com.satalia.beerTest.beerTest.dto.GeoLocationDto;
 import com.satalia.beerTest.beerTest.entities.GeoLocation;
 
 import java.util.ArrayList;

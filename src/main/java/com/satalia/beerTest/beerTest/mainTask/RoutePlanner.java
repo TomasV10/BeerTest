@@ -12,7 +12,6 @@ public class RoutePlanner {
     @Autowired
     DistanceService distanceService;
 
-
     private DistanceMatrixCreator distanceMatrixCreator;
 
     public double[][] createRoute(GeoLocation home, List<GeoLocation>breweries){
