@@ -1,29 +1,35 @@
 package com.satalia.beerTest.beerTest.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.satalia.beerTest.beerTest.dto.GeoLocationDto;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "geocodes")
 public class GeoLocation {
     @Id
-    private int id;
+    private Long id;
     @Column(name = "latitude")
     private double latitude;
     @Column(name = "longitude")
     private double longitude;
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @NotFound(action = NotFoundAction.IGNORE)
+    @JoinColumn(name = "brewery_id")
     private Brewery brewery;
 
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -56,14 +62,22 @@ public class GeoLocation {
         this.longitude = longitude;
     }
 
+
+
     public GeoLocation() {
     }
 
     @Override
     public String toString() {
         return "GeoLocation{" +
+                "id=" + id +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
                 '}';
     }
+
+    public GeoLocationDto toDto(){
+        return new GeoLocationDto(latitude, longitude);
+    }
+
 }

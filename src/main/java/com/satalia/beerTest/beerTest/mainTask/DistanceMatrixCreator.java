@@ -3,9 +3,11 @@ package com.satalia.beerTest.beerTest.mainTask;
 import com.satalia.beerTest.beerTest.entities.GeoLocation;
 import com.satalia.beerTest.beerTest.services.DistanceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class DistanceMatrixCreator {
 
     @Autowired

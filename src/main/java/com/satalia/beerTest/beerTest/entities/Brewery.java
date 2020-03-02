@@ -2,12 +2,13 @@ package com.satalia.beerTest.beerTest.entities;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "breweries")
 public class Brewery {
     @Id
-    private int id;
+    private Long id;
     @Column(name = "name")
     private String name;
     @Column(name = "address1")
@@ -30,11 +31,11 @@ public class Brewery {
         this.beerTypes = beerTypes;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public Brewery(int id, String name) {
+    public Brewery(Long id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -42,7 +43,7 @@ public class Brewery {
     public Brewery() {
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -76,6 +77,18 @@ public class Brewery {
 
     public void setLocation(List<GeoLocation> location) {
         this.location = location;
+    }
+
+    @Override
+    public String toString() {
+        return "Brewery{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", location=" + location +
+                ", beerTypes=" + beerTypes +
+                '}';
     }
 
 }

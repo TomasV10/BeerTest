@@ -1,57 +1,50 @@
 package com.satalia.beerTest.beerTest.mainTask;
 
-import com.satalia.beerTest.beerTest.dto.BreweryDto;
+import com.satalia.beerTest.beerTest.dto.GeoLocationDto;
+import com.satalia.beerTest.beerTest.entities.GeoLocation;
+import com.satalia.beerTest.beerTest.repositories.BreweriesRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class NearestBrewery {
 
-    public List<BreweryDto>getList() {
-        List<BreweryDto>breweryDtos = new ArrayList<>();
-
-        breweryDtos.add(new BreweryDto("Birmingham", 0, false));
-        breweryDtos.add(new BreweryDto("Lancaster", 1, false));
-        breweryDtos.add(new BreweryDto("Leeds", 2, false));
-        breweryDtos.add(new BreweryDto("Leicester", 3, false));
-        breweryDtos.add(new BreweryDto("Lincoln", 4, true)); //home
-
-        return breweryDtos;
-    }
-
-
-    public double nearestBrewery(double[][] distanceMatrix) {
+    public double nearestBrewery(List<GeoLocation> breweryLoc, double[][] distanceMatrix) {
         double routeCost = 0;
 
-        Route nearestRoute = new Route(getList().get(4));
+        Route nearestRoute = new Route(breweryLoc.get(0));
 
-        while(nearestRoute.getBreweries().size() != getList().size()){
-            BreweryDto neighbourBrewery = null;
+        while(nearestRoute.getBreweries().size() != breweryLoc.size()){
+            GeoLocation neighbourBrewery = null;
             double neighbourDistance = Double.MAX_VALUE;
 
             for(int i = 0; i < distanceMatrix.length; i++) {
                 for (int j = 0; j < distanceMatrix[i].length; j++) {
 
-                    if (distanceMatrix[nearestRoute.getCurrentBrewery().getId()][j] < neighbourDistance
-                            && distanceMatrix[nearestRoute.getCurrentBrewery().getId()][j] != 0
-                            && getList().get(j).isVisited() == false) {
+                    if (distanceMatrix[breweryLoc.indexOf(nearestRoute.getCurrentBrewery())][j] < neighbourDistance
+                            && distanceMatrix[breweryLoc.indexOf(nearestRoute.getCurrentBrewery())][j] != 0
+                            && !nearestRoute.getBreweries().contains(breweryLoc)) {
 
-                        neighbourBrewery = getList().get(j);
-                        neighbourDistance = distanceMatrix[nearestRoute.getCurrentBrewery().getId()][j];
+                        neighbourBrewery = breweryLoc.get(j);
+                        neighbourDistance = distanceMatrix[breweryLoc.indexOf(nearestRoute.getCurrentBrewery())][j];
                     }
                 }
             }
             if (neighbourBrewery != null){
                 nearestRoute.getBreweries().add(neighbourBrewery);
                 nearestRoute.setCurrentBrewery(neighbourBrewery);
-                neighbourBrewery.setVisited(true);
+                if(neighbourDistance + routeCost >= 2000){
+                    break;
+                }
+               routeCost += neighbourDistance;
 
-                routeCost += neighbourDistance;
             }
         }
 
-        routeCost += distanceMatrix[nearestRoute.getHome().getId()][nearestRoute.getCurrentBrewery().getId()];
-        nearestRoute.getBreweries().add(getList().get(4));
+        routeCost += distanceMatrix[breweryLoc.indexOf(nearestRoute.getHome())][breweryLoc.indexOf(nearestRoute.getCurrentBrewery())];
+        nearestRoute.getBreweries().add(breweryLoc.get(0));
 
         return routeCost;
     }

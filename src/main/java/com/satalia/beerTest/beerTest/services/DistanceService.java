@@ -5,13 +5,16 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 @Service
 public class DistanceService {
 
+//    public GeoLocation getUserRequest()
 
     public List<GeoLocation> getDistancesBetweenBreweries(GeoLocation home, List<GeoLocation>breweries){
+
         List<GeoLocation>visitedBreweries = new ArrayList<>();
         visitedBreweries.add(new GeoLocation(home.getLatitude(), home.getLongitude()));
 

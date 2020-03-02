@@ -14,6 +14,7 @@ public class BeerType {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "brewery_id")
     private Brewery brewery;
 
     public long getId() {
@@ -38,5 +39,13 @@ public class BeerType {
 
     public void setBrewery(Brewery brewery) {
         this.brewery = brewery;
+    }
+
+    @Override
+    public String toString() {
+        return "BeerType{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

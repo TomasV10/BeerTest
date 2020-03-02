@@ -1,15 +1,16 @@
 package com.satalia.beerTest.beerTest.mainTask;
 
-import com.satalia.beerTest.beerTest.dto.BreweryDto;
+import com.satalia.beerTest.beerTest.dto.GeoLocationDto;
+import com.satalia.beerTest.beerTest.entities.GeoLocation;
 
 import java.util.ArrayList;
 
 public class Route {
-    private BreweryDto home;
-    private BreweryDto currentBrewery;
-    private ArrayList<BreweryDto> breweries = new ArrayList<>();
+    private GeoLocation home;
+    private GeoLocation currentBrewery;
+    private ArrayList<GeoLocation> breweries = new ArrayList<>();
 
-    public Route(BreweryDto home, BreweryDto currentBrewery, ArrayList<BreweryDto> breweries) {
+    public Route(GeoLocation home, GeoLocation currentBrewery, ArrayList<GeoLocation> breweries) {
         this.home = home;
         this.currentBrewery = currentBrewery;
         this.breweries = breweries;
@@ -19,33 +20,33 @@ public class Route {
         home = null;
     }
 
-    public Route(BreweryDto breweryDto) {
-        this.home = breweryDto;
-        this.currentBrewery = breweryDto;
-        this.breweries.add(breweryDto);
+    public Route(GeoLocation geoLocation) {
+        this.home = geoLocation;
+        this.currentBrewery = geoLocation;
+        this.breweries.add(geoLocation);
     }
 
-    public BreweryDto getHome() {
+    public GeoLocation getHome() {
         return home;
     }
 
-    public void setHome(BreweryDto home) {
+    public void setHome(GeoLocation home) {
         this.home = home;
     }
 
-    public BreweryDto getCurrentBrewery() {
+    public GeoLocation getCurrentBrewery() {
         return currentBrewery;
     }
 
-    public void setCurrentBrewery(BreweryDto currentBrewery) {
+    public void setCurrentBrewery(GeoLocation currentBrewery) {
         this.currentBrewery = currentBrewery;
     }
 
-    public ArrayList<BreweryDto> getBreweries() {
+    public ArrayList<GeoLocation> getBreweries() {
         return breweries;
     }
 
-    public void setBreweries(ArrayList<BreweryDto> breweries) {
+    public void setBreweries(ArrayList<GeoLocation> breweries) {
         this.breweries = breweries;
     }
 }
