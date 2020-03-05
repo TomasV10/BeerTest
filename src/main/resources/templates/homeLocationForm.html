@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body class="container">
+    <form action="#" th:action="@{/mvc/breweries/save}" th:object="${geoLocationDto}"
+          method="POST">
+        <div class="form-group">
+            <label for="name">Home</label><span style="color:red; font_weight:bold">*</span>
+            <input type="text" class="form-control"
+                   name="name"
+                   id="name"
+                   placeholder="Enter brewery name"
+                   th:field="*{name}">
+        </div>
+        <div class="form-group">
+            <label for="latitude">Latitude</label><span style="color:red; font_weight:bold">*</span>
+            <input type="text" class="form-control"
+                   name="latitude"
+                   id="latitude"
+                   placeholder="Enter latitude coordinate"
+                   th:field="*{latitude}">
+        </div>
+        <div class="form-group">
+            <label for="longitude">Longitude</label><span style="color:red; font_weight:bold">*</span>
+            <input type="text" class="form-control"
+                   name="longitude"
+                   id="longitude"
+                   placeholder="Enter longitude"
+                   th:field="*{longitude}">
+        </div>
+        <div class="form-footer">
+            <button class="btn btn-primary">Let's Go!!</button>
+        </div>
+        </div>
+    </form>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
