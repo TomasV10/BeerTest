@@ -23,6 +23,26 @@ public class GeoLocation {
     @JoinColumn(name = "brewery_id")
     private Brewery brewery;
 
+    public GeoLocation(Long id, double latitude, double longitude, Brewery brewery) {
+        this.id = id;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.brewery = brewery;
+    }
+
+    public GeoLocation(long id, double latitude, double longitude) {
+        this.id = id;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+    public GeoLocation(double latitude, double longitude) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+    public GeoLocation() {
+    }
 
     public Long getId() {
         return id;
@@ -56,15 +76,7 @@ public class GeoLocation {
         this.brewery = brewery;
     }
 
-    public GeoLocation(double latitude, double longitude) {
-        this.latitude = latitude;
-        this.longitude = longitude;
-    }
 
-
-
-    public GeoLocation() {
-    }
 
     @Override
     public String toString() {
@@ -74,9 +86,4 @@ public class GeoLocation {
                 ", longitude=" + longitude +
                 '}';
     }
-
-    public GeoLocationDto toDto(){
-        return new GeoLocationDto(latitude, longitude);
-    }
-
 }

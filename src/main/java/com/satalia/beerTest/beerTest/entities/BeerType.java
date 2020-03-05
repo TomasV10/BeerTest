@@ -1,6 +1,7 @@
 package com.satalia.beerTest.beerTest.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.satalia.beerTest.beerTest.dto.BeerTypeDto;
 
 import javax.persistence.*;
 
@@ -47,5 +48,9 @@ public class BeerType {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    BeerTypeDto beerTypeToDto(){
+        return new BeerTypeDto(id, name);
     }
 }

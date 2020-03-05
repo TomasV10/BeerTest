@@ -7,12 +7,12 @@ import java.util.ArrayList;
 public class Route {
     private GeoLocation home;
     private GeoLocation currentBrewery;
-    private ArrayList<GeoLocation> breweries = new ArrayList<>();
+    private ArrayList<GeoLocation> locations = new ArrayList<>();
 
-    public Route(GeoLocation home, GeoLocation currentBrewery, ArrayList<GeoLocation> breweries) {
+    public Route(GeoLocation home, GeoLocation currentBrewery, ArrayList<GeoLocation> locations) {
         this.home = home;
         this.currentBrewery = currentBrewery;
-        this.breweries = breweries;
+        this.locations = locations;
     }
 
     public Route() {
@@ -22,7 +22,7 @@ public class Route {
     public Route(GeoLocation geoLocation) {
         this.home = geoLocation;
         this.currentBrewery = geoLocation;
-        this.breweries.add(geoLocation);
+        this.locations.add(geoLocation);
     }
 
     public GeoLocation getHome() {
@@ -41,11 +41,11 @@ public class Route {
         this.currentBrewery = currentBrewery;
     }
 
-    public ArrayList<GeoLocation> getBreweries() {
-        return breweries;
+    public ArrayList<GeoLocation> getLocations() {
+        return locations;
     }
 
-    public void setBreweries(ArrayList<GeoLocation> breweries) {
-        this.breweries = breweries;
+    public void setLocations(ArrayList<GeoLocation> locations) {
+        this.locations = locations;
     }
 }

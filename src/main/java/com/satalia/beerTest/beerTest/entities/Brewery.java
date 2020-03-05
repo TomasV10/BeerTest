@@ -1,7 +1,11 @@
 package com.satalia.beerTest.beerTest.entities;
 
+import com.satalia.beerTest.beerTest.dto.BreweryDto;
+import com.satalia.beerTest.beerTest.dto.GeoLocationDto;
+
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 
 @Entity
@@ -23,6 +27,20 @@ public class Brewery {
     @OneToMany(mappedBy = "brewery", cascade = CascadeType.ALL)
     private List<BeerType>beerTypes;
 
+    public Brewery(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Brewery(Long id, String name, List<GeoLocation> location) {
+        this.id = id;
+        this.name = name;
+        this.location = location;
+    }
+
+    public Brewery() {
+    }
+
     public List<BeerType> getBeerTypes() {
         return beerTypes;
     }
@@ -35,13 +53,7 @@ public class Brewery {
         return id;
     }
 
-    public Brewery(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
 
-    public Brewery() {
-    }
 
     public void setId(Long id) {
         this.id = id;

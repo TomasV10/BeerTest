@@ -1,12 +1,14 @@
 package com.satalia.beerTest.beerTest.dto;
 
 
+import com.satalia.beerTest.beerTest.entities.Brewery;
 
 public class GeoLocationDto {
-    private int id;
+    private long id;
+    private String name;
     private double latitude;
     private double longitude;
-    private boolean visited;
+    private Brewery brewery;
 
 
 
@@ -15,30 +17,31 @@ public class GeoLocationDto {
         this.longitude = longitude;
     }
 
-    public GeoLocationDto(double latitude, double longitude, boolean visited) {
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.visited = visited;
-    }
-
     public GeoLocationDto() {
     }
 
-    public int getId() {
+    public Brewery getBrewery() {
+        return brewery;
+    }
+
+    public void setBrewery(Brewery brewery) {
+        this.brewery = brewery;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
-    }
-
-
-    public boolean isVisited() {
-        return visited;
-    }
-
-    public void setVisited(boolean visited) {
-        this.visited = visited;
     }
 
     public double getLatitude() {
@@ -63,7 +66,6 @@ public class GeoLocationDto {
                 "id=" + id +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
-                ", visited=" + visited +
                 '}';
     }
 }
