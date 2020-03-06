@@ -28,4 +28,12 @@ public class BeerTypeDto {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "BeerTypeDto{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

@@ -10,14 +10,13 @@ public class GeoLocationDto {
     private double longitude;
     private Brewery brewery;
 
+    public GeoLocationDto() {
 
+    }
 
     public GeoLocationDto(double latitude, double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
-    }
-
-    public GeoLocationDto() {
     }
 
     public Brewery getBrewery() {

@@ -49,8 +49,4 @@ public class BeerType {
                 ", name='" + name + '\'' +
                 '}';
     }
-
-    BeerTypeDto beerTypeToDto(){
-        return new BeerTypeDto(id, name);
-    }
 }
