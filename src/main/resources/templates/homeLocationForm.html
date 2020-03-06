@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body class="container">
     <form action="#" th:action="@{/mvc/breweries/save}" th:object="${geoLocationDto}"
           method="POST">
         <div class="form-group">
-            <label for="name">Home</label><span style="color:red; font_weight:bold">*</span>
+            <label for="name">Current Location</label><span style="color:red; font_weight:bold">*</span>
             <input type="text" class="form-control"
                    name="name"
                    id="name"
-                   placeholder="Enter brewery name"
+                   placeholder="e.g., HOME"
                    th:field="*{name}">
         </div>
         <div class="form-group">
@@ -34,7 +35,6 @@
         </div>
         <div class="form-footer">
             <button class="btn btn-primary">Let's Go!!</button>
-        </div>
         </div>
     </form>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"

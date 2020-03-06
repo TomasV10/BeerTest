@@ -2,38 +2,52 @@
 <html lang="en" xmlns:th="http://www.w3.org/2001/XMLSchema">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <style>
-            .red_bold{
-                 animation:1s blinker linear infinite;
-                -webkit-animation:1s blinker linear infinite;
-                -moz-animation:1s blinker linear infinite;
-                 font-weight:bold;
-                 color: red;
-                }
-
-                @-moz-keyframes blinker {
-                 0% { opacity: 1.0; }
-                 50% { opacity: 0.0; }
-                 100% { opacity: 1.0; }
-                 }
-
-                @-webkit-keyframes blinker {
-                 0% { opacity: 1.0; }
-                 50% { opacity: 0.0; }
-                 100% { opacity: 1.0; }
-                 }
-
-                @keyframes blinker {
-                 0% { opacity: 1.0; }
-                 50% { opacity: 0.0; }
-                 100% { opacity: 1.0; }
-                 }
-            }
-        </style>
+    <title>Trip</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body class="container">
-<div>RouteCost</div>
-<div th:text="${calculationResult}" class="red_bold"></div>
-</body>
+    <body class="container">
+        <table class="table" style="text-align:center">
+            <thead>
+                <tr>
+                    <th>Brewery ID</th>
+                    <th>Visited Breweries</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="brewery : ${calculationResult.visitedBreweries}">
+                    <td th:text="${brewery.id}"></td>
+                    <td th:text="${brewery.name}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table" style="text-align:center">
+            <thead>
+                <tr>
+                    <th>Collected Beer Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="beer : ${calculationResult.collectedBeer}">
+                    <td th:text="${beer.name}"></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>RouteCost</th>
+                    <th>Program took, ms</th>
+                    <tr>
+                        <td th:text="${calculationResult.routeCost}"></td>
+                        <td th:text="${calculationResult.duration}"></td>
+                    </tr>
+                </tr>
+            </tfoot>
+        </table>
+        <a class="btn btn-info"
+           data-th-href="@{/mvc/breweries/home}">Back to start</a>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    </body>
 </html>

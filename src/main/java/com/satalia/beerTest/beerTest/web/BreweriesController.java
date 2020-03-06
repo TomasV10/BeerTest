@@ -1,8 +1,7 @@
-package com.satalia.beerTest.beerTest.controllers;
+package com.satalia.beerTest.beerTest.web;
 
 
 import com.satalia.beerTest.beerTest.dto.GeoLocationDto;
-import com.satalia.beerTest.beerTest.entities.Brewery;
 import com.satalia.beerTest.beerTest.entities.GeoLocation;
 import com.satalia.beerTest.beerTest.mainTask.DistanceMatrixCreator;
 import com.satalia.beerTest.beerTest.mainTask.NearestBrewery;
@@ -18,7 +17,7 @@ import java.util.*;
 
 @Controller
 @RequestMapping("/mvc/breweries")
-public class BrewerieController {
+public class BreweriesController {
 
     @Autowired
     private NearestBrewery nearestBrewery;
