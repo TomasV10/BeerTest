@@ -53,4 +53,14 @@ public class Result {
     public void setCollectedBeer(List<BeerTypeDto> collectedBeer) {
         this.collectedBeer = collectedBeer;
     }
+
+    @Override
+    public String toString() {
+        return "Result{" +
+                "routeCost=" + routeCost +
+                ", visitedBreweries=" + visitedBreweries +
+                ", collectedBeer=" + collectedBeer +
+                ", duration=" + duration +
+                '}';
+    }
 }
