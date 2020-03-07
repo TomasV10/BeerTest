@@ -10,6 +10,7 @@ public class BreweryDto {
     private String name;
     private List<GeoLocation>locations;
     private List<BeerType>beerTypes;
+    private double distanceFromPreviousBrewery;
 
     public BreweryDto() {
     }
@@ -19,11 +20,6 @@ public class BreweryDto {
         this.name = name;
         this.locations = locations;
         this.beerTypes = beerTypes;
-    }
-
-    public BreweryDto(long id, String name) {
-        this.id = id;
-        this.name = name;
     }
 
     public long getId() {
@@ -56,5 +52,23 @@ public class BreweryDto {
 
     public void setBeerTypes(List<BeerType> beerTypes) {
         this.beerTypes = beerTypes;
+    }
+
+    public double getDistanceFromPreviousBrewery() {
+        return distanceFromPreviousBrewery;
+    }
+
+    public void setDistanceFromPreviousBrewery(double distanceFromPreviousBrewery) {
+        this.distanceFromPreviousBrewery = distanceFromPreviousBrewery;
+    }
+
+    @Override
+    public String toString() {
+        return "BreweryDto{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", locations=" + locations +
+                ", beerTypes=" + beerTypes +
+                '}';
     }
 }
