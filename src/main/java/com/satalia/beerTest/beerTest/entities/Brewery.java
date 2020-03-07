@@ -1,11 +1,8 @@
 package com.satalia.beerTest.beerTest.entities;
 
 import com.satalia.beerTest.beerTest.dto.BreweryDto;
-import com.satalia.beerTest.beerTest.dto.GeoLocationDto;
-
 import javax.persistence.*;
 import java.util.List;
-import java.util.Objects;
 
 
 @Entity
@@ -101,6 +98,9 @@ public class Brewery {
                 ", location=" + location +
                 ", beerTypes=" + beerTypes +
                 '}';
+    }
+    public BreweryDto toDto(){
+        return new BreweryDto(id, name, location, beerTypes);
     }
 
 }

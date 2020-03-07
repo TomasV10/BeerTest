@@ -18,6 +18,14 @@ public class BeerType {
     @JoinColumn(name = "brewery_id")
     private Brewery brewery;
 
+    public BeerType() {
+    }
+
+    public BeerType(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public long getId() {
         return id;
     }
@@ -48,5 +56,8 @@ public class BeerType {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
+    }
+    public BeerTypeDto toDto(){
+        return new BeerTypeDto(id, name);
     }
 }
