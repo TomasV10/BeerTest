@@ -1,11 +1,7 @@
 package com.satalia.beerTest.beerTest;
 
-import com.satalia.beerTest.beerTest.brewery.Brewery;
 import com.satalia.beerTest.beerTest.dto.BeerTypeDto;
 import com.satalia.beerTest.beerTest.dto.BreweryDto;
-import com.satalia.beerTest.beerTest.brewery.BeerType;
-import com.satalia.beerTest.beerTest.brewery.GeoLocation;
-import com.satalia.beerTest.beerTest.brewery.NearestBreweryFinder;
 import com.satalia.beerTest.beerTest.dto.Result;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
