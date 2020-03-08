@@ -1,4 +1,4 @@
-package com.satalia.beerTest.beerTest.entities;
+package com.satalia.beerTest.beerTest.brewery;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.satalia.beerTest.beerTest.dto.GeoLocationDto;
@@ -23,6 +23,9 @@ public class GeoLocation {
     @JoinColumn(name = "brewery_id")
     private Brewery brewery;
 
+    public GeoLocation() {
+    }
+
     public GeoLocation(Long id, double latitude, double longitude, Brewery brewery) {
         this.id = id;
         this.latitude = latitude;
@@ -41,8 +44,6 @@ public class GeoLocation {
         this.longitude = longitude;
     }
 
-    public GeoLocation() {
-    }
 
     public Long getId() {
         return id;
@@ -75,8 +76,6 @@ public class GeoLocation {
     public void setBrewery(Brewery brewery) {
         this.brewery = brewery;
     }
-
-
 
     @Override
     public String toString() {

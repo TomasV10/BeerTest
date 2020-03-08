@@ -1,4 +1,4 @@
-package com.satalia.beerTest.beerTest.entities;
+package com.satalia.beerTest.beerTest.brewery;
 
 import com.satalia.beerTest.beerTest.dto.BreweryDto;
 import javax.persistence.*;
@@ -24,6 +24,9 @@ public class Brewery {
     @OneToMany(mappedBy = "brewery", cascade = CascadeType.ALL)
     private List<BeerType>beerTypes;
 
+    public Brewery() {
+    }
+
     public Brewery(Long id, String name) {
         this.id = id;
         this.name = name;
@@ -35,8 +38,6 @@ public class Brewery {
         this.location = location;
     }
 
-    public Brewery() {
-    }
 
     public List<BeerType> getBeerTypes() {
         return beerTypes;
@@ -49,8 +50,6 @@ public class Brewery {
     public Long getId() {
         return id;
     }
-
-
 
     public void setId(Long id) {
         this.id = id;
@@ -102,5 +101,4 @@ public class Brewery {
     public BreweryDto toDto(){
         return new BreweryDto(id, name, location, beerTypes);
     }
-
 }

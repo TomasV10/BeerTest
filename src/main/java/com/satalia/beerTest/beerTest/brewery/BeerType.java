@@ -1,4 +1,4 @@
-package com.satalia.beerTest.beerTest.entities;
+package com.satalia.beerTest.beerTest.brewery;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.satalia.beerTest.beerTest.dto.BeerTypeDto;
