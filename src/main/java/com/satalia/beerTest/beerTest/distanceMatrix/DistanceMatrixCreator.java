@@ -1,6 +1,6 @@
-package com.satalia.beerTest.beerTest.mainTask;
+package com.satalia.beerTest.beerTest.distanceMatrix;
 
-import com.satalia.beerTest.beerTest.entities.GeoLocation;
+import com.satalia.beerTest.beerTest.brewery.GeoLocation;
 import com.satalia.beerTest.beerTest.services.DistanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

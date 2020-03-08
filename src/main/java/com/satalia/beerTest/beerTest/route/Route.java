@@ -1,6 +1,6 @@
-package com.satalia.beerTest.beerTest.mainTask;
+package com.satalia.beerTest.beerTest.route;
 
-import com.satalia.beerTest.beerTest.entities.GeoLocation;
+import com.satalia.beerTest.beerTest.brewery.GeoLocation;
 
 import java.util.ArrayList;
 
