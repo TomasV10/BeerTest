@@ -1,10 +1,10 @@
 package com.satalia.beerTest.beerTest.api;
 
 import com.satalia.beerTest.beerTest.dto.GeoLocationDto;
-import com.satalia.beerTest.beerTest.entities.GeoLocation;
-import com.satalia.beerTest.beerTest.mainTask.DistanceMatrixCreator;
-import com.satalia.beerTest.beerTest.mainTask.NearestBrewery;
-import com.satalia.beerTest.beerTest.mainTask.Result;
+import com.satalia.beerTest.beerTest.brewery.GeoLocation;
+import com.satalia.beerTest.beerTest.distanceMatrix.DistanceMatrixCreator;
+import com.satalia.beerTest.beerTest.brewery.NearestBreweryFinder;
+import com.satalia.beerTest.beerTest.dto.Result;
 import com.satalia.beerTest.beerTest.repositories.LocationsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +15,7 @@ import java.util.List;
 public class BreweryApiController {
 
     @Autowired
-    private NearestBrewery nearestBrewery;
+    private NearestBreweryFinder nearestBreweryFinder;
     @Autowired
     private DistanceMatrixCreator distanceMatrixCreator;
     @Autowired
@@ -24,13 +24,13 @@ public class BreweryApiController {
 
     @PostMapping("/api/breweries")
     public Result getCalculated(@RequestBody GeoLocationDto geoLocationDto) {
-        GeoLocation location = geoLocationToDto(geoLocationDto);
+        GeoLocation location = dtoToGeoLocation(geoLocationDto);
         List<GeoLocation> locations = locationsRepository.findAll();
         locations.add(0, location);
-        return nearestBrewery.nearestBrewery(locations, distanceMatrixCreator.calculateDistanceUsingMatrix(locations));
+        return nearestBreweryFinder.nearestBrewery(locations, distanceMatrixCreator.calculateDistanceUsingMatrix(locations));
     }
 
-    private GeoLocation geoLocationToDto(GeoLocationDto geoLocationDto) {
+    private GeoLocation dtoToGeoLocation(GeoLocationDto geoLocationDto) {
         GeoLocation location = new GeoLocation();
         location.setId(geoLocationDto.getId());
         location.setBrewery(geoLocationDto.getBrewery());
