@@ -1,7 +1,7 @@
 package com.satalia.beerTest.beerTest.dto;
 
 
-import com.satalia.beerTest.beerTest.entities.Brewery;
+import com.satalia.beerTest.beerTest.brewery.Brewery;
 
 public class GeoLocationDto {
     private long id;

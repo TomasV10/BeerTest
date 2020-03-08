@@ -1,7 +1,7 @@
 package com.satalia.beerTest.beerTest.dto;
 
-import com.satalia.beerTest.beerTest.entities.BeerType;
-import com.satalia.beerTest.beerTest.entities.GeoLocation;
+import com.satalia.beerTest.beerTest.brewery.BeerType;
+import com.satalia.beerTest.beerTest.brewery.GeoLocation;
 
 import java.util.List;
 
@@ -15,11 +15,14 @@ public class BreweryDto {
     public BreweryDto() {
     }
 
+    public BreweryDto(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public BreweryDto(long id, String name, List<GeoLocation> locations, List<BeerType> beerTypes) {
         this.id = id;
         this.name = name;
-        this.locations = locations;
-        this.beerTypes = beerTypes;
     }
 
     public long getId() {

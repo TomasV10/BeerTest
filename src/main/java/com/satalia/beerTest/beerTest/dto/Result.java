@@ -1,8 +1,4 @@
-package com.satalia.beerTest.beerTest.mainTask;
-
-import com.satalia.beerTest.beerTest.dto.BeerTypeDto;
-import com.satalia.beerTest.beerTest.dto.BreweryDto;
-
+package com.satalia.beerTest.beerTest.dto;
 
 import java.util.List;
 
