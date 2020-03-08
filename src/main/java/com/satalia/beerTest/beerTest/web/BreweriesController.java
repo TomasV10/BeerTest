@@ -2,10 +2,10 @@ package com.satalia.beerTest.beerTest.web;
 
 
 import com.satalia.beerTest.beerTest.dto.GeoLocationDto;
-import com.satalia.beerTest.beerTest.entities.GeoLocation;
-import com.satalia.beerTest.beerTest.mainTask.DistanceMatrixCreator;
-import com.satalia.beerTest.beerTest.mainTask.NearestBrewery;
-import com.satalia.beerTest.beerTest.mainTask.Result;
+import com.satalia.beerTest.beerTest.brewery.GeoLocation;
+import com.satalia.beerTest.beerTest.distanceMatrix.DistanceMatrixCreator;
+import com.satalia.beerTest.beerTest.brewery.NearestBreweryFinder;
+import com.satalia.beerTest.beerTest.dto.Result;
 import com.satalia.beerTest.beerTest.repositories.LocationsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +20,7 @@ import java.util.*;
 public class BreweriesController {
 
     @Autowired
-    private NearestBrewery nearestBrewery;
+    private NearestBreweryFinder nearestBreweryFinder;
     @Autowired
     private DistanceMatrixCreator distanceMatrixCreator;
     @Autowired
@@ -36,15 +36,15 @@ public class BreweriesController {
 
     @PostMapping(value = "/save")
     public ModelAndView getCalculated(GeoLocationDto geoLocationDto, Model model){
-        GeoLocation location = geoLocationToDto(geoLocationDto);
+        GeoLocation location = dtoToGeoLocation(geoLocationDto);
         List<GeoLocation>locations = locationsRepository.findAll();
         locations.add(0, location);
-        Result result = nearestBrewery.nearestBrewery(locations, distanceMatrixCreator.calculateDistanceUsingMatrix(locations));
+        Result result = nearestBreweryFinder.nearestBrewery(locations, distanceMatrixCreator.calculateDistanceUsingMatrix(locations));
         model.addAttribute("calculationResult", result);
         return new ModelAndView("result");
     }
 
-    private GeoLocation geoLocationToDto(GeoLocationDto geoLocationDto) {
+    private GeoLocation dtoToGeoLocation(GeoLocationDto geoLocationDto) {
         GeoLocation location = new GeoLocation();
         location.setId(geoLocationDto.getId());
         location.setBrewery(geoLocationDto.getBrewery());
