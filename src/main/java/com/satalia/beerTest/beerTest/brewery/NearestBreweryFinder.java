@@ -1,10 +1,9 @@
-package com.satalia.beerTest.beerTest.mainTask;
+package com.satalia.beerTest.beerTest.brewery;
 
 import com.satalia.beerTest.beerTest.dto.BeerTypeDto;
 import com.satalia.beerTest.beerTest.dto.BreweryDto;
-import com.satalia.beerTest.beerTest.entities.BeerType;
-import com.satalia.beerTest.beerTest.entities.Brewery;
-import com.satalia.beerTest.beerTest.entities.GeoLocation;
+import com.satalia.beerTest.beerTest.dto.Result;
+import com.satalia.beerTest.beerTest.route.Route;
 import org.springframework.stereotype.Component;
 import java.util.Collection;
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
-public class NearestBrewery {
+public class NearestBreweryFinder {
 
     public Result nearestBrewery(List<GeoLocation> breweryLoc, double[][] distanceMatrix) {
         final long startTime = System.nanoTime();
@@ -33,13 +32,14 @@ public class NearestBrewery {
         return new Result(routeCost, listOfbreweriesToDto(breweries), listOfBeerTypeToDto(collectedBeer), duration);
     }
 
-    private double visitAsManyBreweriesAsPossibleInLimitedDistance(List<GeoLocation> breweryLoc, double[][] distanceMatrix, double routeCost, Route nearestRoute) {
+    private double visitAsManyBreweriesAsPossibleInLimitedDistance(List<GeoLocation> breweryLoc, double[][] distanceMatrix,
+                                                                   double routeCost, Route nearestRoute) {
         while (nearestRoute.getLocations().size() != breweryLoc.size()) {
             GeoLocation neighbourBrewery = null;
             double neighbourDistance = Double.MAX_VALUE;
 
-            for (int i = 0; i < distanceMatrix.length; i++) {
-                for (int j = 0; j < distanceMatrix[i].length; j++) {
+            for (double[] matrix : distanceMatrix) {
+                for (int j = 0; j < matrix.length; j++) {
                     if (distanceMatrix[breweryLoc.indexOf(nearestRoute.getCurrentBrewery())][j] < neighbourDistance
                             && distanceMatrix[breweryLoc.indexOf(nearestRoute.getCurrentBrewery())][j] != 0
                             && !nearestRoute.getLocations().contains(breweryLoc.get(j))) {
@@ -49,23 +49,40 @@ public class NearestBrewery {
                     }
                 }
             }
-            if (neighbourBrewery != null) {
-                nearestRoute.getLocations().add(neighbourBrewery);
-                nearestRoute.setCurrentBrewery(neighbourBrewery);
+            if (checkDistanceAccordingToGivenLimit(breweryLoc, distanceMatrix, routeCost, nearestRoute, neighbourDistance))
+                break;
 
-                if (neighbourDistance + routeCost + distanceToHome(routeCost + distanceMatrix[breweryLoc.indexOf(nearestRoute.getHome())][breweryLoc.indexOf(nearestRoute.getCurrentBrewery())]) >= 2000) {
-                    break;
-                }
-                routeCost += neighbourDistance;
-            }
+            routeCost = getRouteCost(routeCost, nearestRoute, neighbourBrewery, neighbourDistance);
         }
         return routeCost;
     }
 
-    private void printResultToConsole(double routeCost, List<Brewery> breweries, List<BeerType> collectedBeer, long duration) {
+
+    private double getRouteCost(double routeCost, Route nearestRoute, GeoLocation neighbourBrewery, double neighbourDistance) {
+        if (neighbourBrewery != null) {
+            nearestRoute.getLocations().add(neighbourBrewery);
+            nearestRoute.setCurrentBrewery(neighbourBrewery);
+            routeCost += neighbourDistance;
+        }
+        return routeCost;
+    }
+
+    private boolean checkDistanceAccordingToGivenLimit(List<GeoLocation> breweryLoc, double[][] distanceMatrix,
+                                                       double routeCost, Route nearestRoute, double neighbourDistance) {
+
+        return neighbourDistance + routeCost + distanceToHome(routeCost + distanceMatrix[breweryLoc.indexOf
+                (nearestRoute.getHome())][breweryLoc.indexOf(nearestRoute.getCurrentBrewery())]) >= 2000;
+    }
+
+    private void printResultToConsole(double routeCost, List<Brewery> breweries, List<BeerType> collectedBeer,
+                                      long duration) {
+
         System.out.println("Found " + breweries.size() + " beer factories");
-        breweries.forEach(brewery ->
-            System.out.println(brewery.getId() + " " + brewery.getName()));
+        breweries.forEach(brewery -> {
+                    System.out.println(brewery.getId() + " " + brewery.getName());
+                    brewery.getLocation().forEach(br ->
+                            System.out.println(br.getLatitude() + " " + br.getLongitude()));
+                });
 
         System.out.println("Collected " + collectedBeer.size() + " beer types");
         collectedBeer.forEach(beer ->
@@ -103,10 +120,9 @@ public class NearestBrewery {
                 .map(Brewery::getBeerTypes)
                 .flatMap(Collection::stream)
                 .filter(Objects::nonNull)
+                .distinct()
                 .collect(Collectors.toList());
     }
-
-
 }
 
 
